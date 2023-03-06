@@ -4,7 +4,7 @@ import product from './data/dataProduct'
 function App() {
   return (
     <div className="App">
-      <SlideGallery images={product.images}/>
+      <SlideGallery slides={product.images}/>
     </div>
   )
 }

@@ -18,3 +18,5 @@ const product = {
         'https://moviesshopco.vtexassets.com/arquivos/ids/173077-1600-1600?v=638091313610530000&width=1600&height=1600&aspect=true'
     ]
 }
+
+export default product

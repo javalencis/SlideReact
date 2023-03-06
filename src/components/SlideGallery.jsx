@@ -1,11 +1,13 @@
-import { SlideHorizontal } from "./SlideHorizontal"
-import { SlideVertical } from "./SlideVertical"
 
-export const SlideGallery = () => {
+export const SlideGallery = ({ slides }) => {
+  
   return (
-    <div className="SlideGallery">
-        <SlideVertical/>
-        <SlideHorizontal/>
+
+    <div className="Carrusel">
+      {
+        
+      }
     </div>
+
   )
 }
