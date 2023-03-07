@@ -3,3 +3,61 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.container{
+    max-width: 500px;
+    position: relative;
+    button{
+        top: 50%;
+        position: absolute;
+        width: 46px;
+        height: 46px;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        background-color: rgb(100, 98, 98);
+        color: white;
+        font-size: 20px;
+        line-height: 46px;
+        transform: translateY(-50%);
+    }
+
+    button:first-child{
+        left: -15px;
+        display: none;
+    }
+    button:last-child{
+    
+        right: -15px;
+    }
+
+    .carrusel{
+        white-space: nowrap;
+        height: 500px;
+        font-size: 0;
+        cursor: pointer;
+        overflow: hidden;
+       
+        &.dragging{
+            cursor: grab;
+            scroll-behavior: auto;
+          
+            img{
+          
+                pointer-events: none;
+            }
+        }
+        img{
+            width:calc(100% / 1);
+            max-height: 500px;
+            object-fit: contain;
+    
+
+        }
+    }
+}
