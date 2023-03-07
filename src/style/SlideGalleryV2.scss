@@ -1,0 +1,51 @@
+.container-v2 {
+    max-width: 500px;
+    overflow: hidden;
+    
+    
+    .cont-car {
+        z-index: 1;
+        position: relative;
+ 
+        .carrusel-v2 {
+            display: flex;
+            height: auto;
+            font-size: 0;
+            cursor: grab;
+    
+            
+            img {
+                width: calc(100% / 1);
+                max-height: 600px;
+                object-fit: contain;
+         
+
+
+            }
+        }
+        button{
+            top: 50%;
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            background-color: rgb(100, 98, 98);
+            color: white;
+            font-size: 20px;
+            line-height: 46px;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+    
+        button:first-child{
+            left: -15px;
+            
+        }
+        button:last-child{
+        
+            right: -15px;
+        }
+    }
+}
