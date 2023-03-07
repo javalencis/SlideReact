@@ -1,51 +1,56 @@
 .container-v2 {
     max-width: 500px;
     overflow: hidden;
-    
+
     
     .cont-car {
         z-index: 1;
         position: relative;
- 
+        
         .carrusel-v2 {
             display: flex;
             height: auto;
             font-size: 0;
-            cursor: grab;
+            cursor: pointer;
     
             
             img {
-                width: calc(100% / 1);
+                width: calc(100%);
                 max-height: 600px;
                 object-fit: contain;
-         
-
-
+               
             }
         }
         button{
             top: 50%;
             position: absolute;
-            width: 46px;
-            height: 46px;
+            width: 50px;
+            height: 100px;
+
             cursor: pointer;
             border: none;
-            border-radius: 50%;
-            background-color: rgb(100, 98, 98);
-            color: white;
-            font-size: 20px;
-            line-height: 46px;
+            
+            background-color:transparent;
+            color: blue;
+            font-size: 34px;
+            font-stretch: condensed;
+            font-weight: 700;
+        
             transform: translateY(-50%);
             z-index: 2;
+         
+
+           
         }
+        
     
         button:first-child{
-            left: -15px;
+            left: 0px;
             
         }
         button:last-child{
         
-            right: -15px;
+            right: 0px;
         }
     }
 }

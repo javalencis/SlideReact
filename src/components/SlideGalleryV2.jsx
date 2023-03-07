@@ -9,74 +9,102 @@ export const SlideGalleryV2 = ({ slides }) => {
     const [prevPosX, setPrevPosX] = useState(null)
     const [timeT, setTimeT] = useState(0)
     const [posX, setPosX] = useState(0)
-    const [imgCurrent, setImgCurrent] = useState(1)
+    const [imgCurrent, setImgCurrent] = useState(0)
 
 
     const mouseMove = (e) => {
         if (!isDragStart) return
-        let posDiff = e.clientX - posClick
+        let posDiff
+        if (e.clientX) {
+            posDiff = e.clientX - posClick
+        } else {
+
+            posDiff = e.touches[0].pageX - posClick
+        }
         setPosX(prevPosX + posDiff)
-
-
     }
+
     const mouseDown = (e) => {
 
         setPosClick(e.clientX)
         setPrevPosX(posX)
         setIsDragStart(true)
         setTimeT(0)
+
+
+
     }
-    const mouseLeave = () =>{
-        setIsDragStart(false)
-        
-        setPosX(prevPosX)
+    const mouseLeave = () => {
+
+
     }
     const mouseUp = (e) => {
+
         setIsDragStart(false)
-        let posDiff = e.clientX - posClick
+        let posDiff
+        if (e.clientX) {
+            posDiff = e.clientX - posClick
+        } else {
+
+            posDiff = e.changedTouches[0].pageX - posClick
+        }
+        setPosX(prevPosX + posDiff)
         const imgWidth = myImg.current.clientWidth
         setTimeT(0.3)
-        console.log(posDiff)
+        console.log(e)
         if (posDiff < 0) {
-            if (!(imgCurrent === slides.length)) {
-              
-                setPosX(-imgCurrent * imgWidth)
+            if (!(imgCurrent === (slides.length-1))) {
+
+                setPosX(-(imgCurrent+1) * imgWidth)
                 setImgCurrent(i => i + 1)
-            }else{
-                setPosX(prevPosX)
-              
+            } else {
+                setPosX(-imgWidth * (slides.length - 1))
+
             }
         } else if (posDiff > 0) {
             if (!(imgCurrent === 0)) {
-          
+
                 setPosX(-(imgCurrent - 1) * (imgWidth))
                 setImgCurrent(i => i - 1)
-            }else{
-                setPosX(prevPosX)
+            } else {
+                setPosX(0)
             }
-           
+
         }
     }
 
+    const handleClickLeft = () => {
+        const imgWidth = myImg.current.clientWidth
+        setPosX(-(imgCurrent - 1) * (imgWidth))
+        setImgCurrent(x=>x>0? x-1 : 1)
+    }
+    const handleClickRigth = () =>{
+        const imgWidth = myImg.current.clientWidth
+        setPosX(-(imgCurrent+1) * imgWidth)
+        setImgCurrent(x=>x< slides.length -1 ? x+1 : x)
+    }
 
     return (
         <div className="container-v2">
 
-            
+
             <div className='cont-car'
 
                 ref={myCar}
+                onTouchMove={mouseMove}
                 onMouseMove={mouseMove}
-                onMouseDown={mouseDown}
+                onPointerDown={mouseDown}
                 onMouseUp={mouseUp}
-                onMouseLeave={mouseLeave}
+                onTouchEnd={mouseUp}
             >
-                <button id="left-v2">{'<'} </button>
+                <button id="left" onClick={handleClickLeft}
+                    style={{display: imgCurrent > 0 ? "block" : "none"}}
+                >{'<'} </button>
 
-                <div className="carrusel-v2"  style={{
-                transform: 'translate3d(' + posX + 'px,0px,0px)',
-                transition: 'all ' + timeT + 's ease'
-            }}>
+                <div className="carrusel-v2" style={{
+                    transform: 'translate3d(' + posX + 'px,0px,0px)',
+                    transition: 'all ' + timeT + 's ease'
+                }}>
                     {
                         slides.map((img, index) => (
                             index === 0 ?
@@ -85,10 +113,15 @@ export const SlideGalleryV2 = ({ slides }) => {
                         ))
                     }
                 </div>
-                <button id="rigth-v2">{'>'} </button>
+                <button 
+                    id="rigth" 
+                    onClick={handleClickRigth}
+                    style={{display: imgCurrent === slides.length-1 ? "none" : "block"}}
+                    
+                >{'>'} </button>
             </div>
 
-           
+
         </div>
     )
 }
