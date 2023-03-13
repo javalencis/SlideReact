@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
-import '../style/SlideGalleryV2.scss'
-export const SlideGalleryV2 = ({ slides }) => {
+import '../style/SlideGalleryV3.scss'
+export const SlideGalleryV3 = ({ slides,orientation,heigth,width }) => {
     const myCar = useRef(null)
     const myImg = useRef(null)
 
@@ -86,7 +86,7 @@ export const SlideGalleryV2 = ({ slides }) => {
     }
 
     return (
-        <div className="container-v2">
+        <div className="container-v2" style={{width:width,height:heigth}}>
 
 
             <div className='cont-car'
@@ -104,7 +104,8 @@ export const SlideGalleryV2 = ({ slides }) => {
 
                 <div className="carrusel-v2" style={{
                     transform: 'translate3d(' + posX + 'px,0px,0px)',
-                    transition: 'all ' + timeT + 's ease'
+                    transition: 'all ' + timeT + 's ease',
+                    flexDirection:orientation
                 }}>
                     {
                         slides.map((img, index) => (

@@ -1,8 +1,6 @@
 .container-v2 {
     max-width: 500px;
     overflow: hidden;
-
-    
     .cont-car {
         z-index: 1;
         position: relative;
@@ -26,14 +24,16 @@
             position: absolute;
             width: 50px;
             height: 100px;
+
             cursor: pointer;
             border: none;
+            
             background-color:transparent;
             color: blue;
             font-size: 34px;
             font-stretch: condensed;
             font-weight: 700;
-            
+        
             transform: translateY(-50%);
             z-index: 2;
          
